@@ -4,18 +4,79 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>org.example</groupId>
-    <artifactId>AuthoFlex</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <groupId>com.fuliang</groupId>
+    <artifactId>Autho-Flex</artifactId>
+    <version>${revision}</version>
     <packaging>pom</packaging>
     <modules>
-        <module>authoflex-core</module>
+        <module>autho-flex-core</module>
+        <module>autho-flex-starter</module>
     </modules>
 
     <properties>
+        <revision>1.0-SNAPSHOT</revision>
+
         <maven.compiler.source>8</maven.compiler.source>
         <maven.compiler.target>8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <springboot.version>2.7.18</springboot.version>
+        <springboot3.version>3.4.3</springboot3.version>
+        <reactor-core.version>3.1.4.RELEASE</reactor-core.version>
+        <jackson-databind.version>2.13.4.1</jackson-databind.version>
+        <jackson-datatype-jsr310.version>2.11.2</jackson-datatype-jsr310.version>
+        <servlet-api.version>3.1.0</servlet-api.version>
+        <jakarta-servlet-api.version>6.0.0</jakarta-servlet-api.version>
+        <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
+        <freemarker.version>2.3.34</freemarker.version>
+        <solon.version>3.0.1</solon.version>
+        <noear-redisx.version>1.6.9</noear-redisx.version>
+        <noear-snack3.version>3.2.127</noear-snack3.version>
+        <jfinal.version>4.9.17</jfinal.version>
+        <jboot.version>3.14.4</jboot.version>
+        <commons-pool2.version>2.5.0</commons-pool2.version>
+        <dubbo.version>2.7.21</dubbo.version>
+        <grpc-spring-boot-starter.version>2.10.1.RELEASE</grpc-spring-boot-starter.version>
+        <hutool-jwt.version>5.8.36</hutool-jwt.version>
+        <jjwt.version>0.9.1</jjwt.version>
+        <fastjson.version>1.2.83</fastjson.version>
+        <fastjson2.version>2.0.15</fastjson2.version>
+        <redisson.version>3.45.0</redisson.version>
+        <hutool-cache.version>5.8.36</hutool-cache.version>
+        <caffeine.version>3.2.0</caffeine.version>
+        <jdk.version>1.8</jdk.version>
+        <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>utf-8</project.reporting.outputEncoding>
     </properties>
+
+    <!-- 仓库依赖 -->
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <version>${springboot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <version>${springboot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter</artifactId>
+            <version>${springboot.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-cache</artifactId>
+            <version>${hutool-cache.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.30</version>
+            <scope>provided</scope>
+        </dependency>
+    </dependencies>
+
 
 </project>

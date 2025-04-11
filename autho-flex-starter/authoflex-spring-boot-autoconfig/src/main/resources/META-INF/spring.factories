@@ -1,0 +1,3 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.fuliang.authoflex.spring.AfBeanRegister,\
+com.fuliang.authoflex.spring.AfBeanInject
