@@ -8,14 +8,20 @@
         <artifactId>Autho-Flex</artifactId>
         <version>${revision}</version>
     </parent>
-    <packaging>jar</packaging>
 
-    <artifactId>autho-flex-core</artifactId>
+    <artifactId>autho-flex-test</artifactId>
 
     <dependencies>
         <dependency>
-            <groupId>cn.hutool</groupId>
-            <artifactId>hutool-cache</artifactId>
+            <groupId>com.fuliang</groupId>
+            <artifactId>authoflex-spring-boot-starter</artifactId>
+            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <version>${springboot.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
