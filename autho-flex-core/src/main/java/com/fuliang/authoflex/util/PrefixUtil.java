@@ -1,9 +1,18 @@
 package com.fuliang.authoflex.util;
 
+import com.fuliang.authoflex.AfManager;
+import com.fuliang.authoflex.config.AuthoFlexConfig;
+
 public class PrefixUtil {
 
-    public static final String ID = "id:";
-    public static final String TOKEN = "token:";
+    public static String ID;
+    public static String TOKEN;
+
+    static {
+        AuthoFlexConfig config = AfManager.getAuthoFlexConfig();
+        ID = config.getIdPrefix() + ":";
+        TOKEN = config.getTokenPrefix() + ":";
+    }
 
     public static String addIdPrefix(String key) {
         return ID + key;

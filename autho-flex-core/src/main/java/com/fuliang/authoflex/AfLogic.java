@@ -8,6 +8,7 @@ import com.fuliang.authoflex.util.PrefixUtil;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.UUID;
+
 @Slf4j
 public class AfLogic {
     private AuthoFlexConfig authoFlexConfig;
@@ -16,13 +17,21 @@ public class AfLogic {
         return authoFlexConfig;
     }
 
+    public AuthoFlexConfig getAuthoFlexConfigOrGlobal() {
+        AuthoFlexConfig localConfig = getAuthoFlexConfig();
+        if (localConfig != null) {
+            return localConfig;
+        }
+        return AfManager.getAuthoFlexConfig();
+    }
+
     public AfLogic setAuthoFlexConfig(AuthoFlexConfig authoFlexConfig) {
         this.authoFlexConfig = authoFlexConfig;
         return this;
     }
 
     public void login(String id) {
-        log.info(AfManager.getAuthoFlexConfig().helloMsg);
+        log.info(AfManager.getAuthoFlexConfig().getHelloMsg());
         String token = tryGenerateToken(id);
 
         tryInject(token);
@@ -62,7 +71,7 @@ public class AfLogic {
     }
 
     private String getTokenValueByContext() {
-        return SpringMVCUtil.getRequest().getHeader(authoFlexConfig.tokenPrefix);
+        return SpringMVCUtil.getRequest().getHeader(getAuthoFlexConfigOrGlobal().getTokenPrefix());
     }
 
     private void saveToken(String id, String token) {
@@ -84,6 +93,7 @@ public class AfLogic {
     public boolean isLoginById(String id) {
         return AfManager.getAfDao().containsKey(PrefixUtil.addIdPrefix(id));
     }
+
     public boolean isLoginByToken(String token) {
         return AfManager.getAfDao().containsKey(PrefixUtil.addTokenPrefix(token));
     }
@@ -94,4 +104,16 @@ public class AfLogic {
         }
     }
 
+    public boolean isLogin() {
+        return tryGetLoginId() != null;
+    }
+
+    public String tryGetLoginId() {
+        String tokenPrefix = AfManager.getAuthoFlexConfig().getTokenPrefix();
+        String header = SpringMVCUtil.getRequest().getHeader(tokenPrefix);
+        if (header == null) {
+            return null;
+        }
+        return (String) AfManager.getAfDao().get(PrefixUtil.addTokenPrefix(header));
+    }
 }

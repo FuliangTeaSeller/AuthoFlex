@@ -6,14 +6,21 @@
     <parent>
         <groupId>com.fuliang</groupId>
         <artifactId>Autho-Flex</artifactId>
-        <version>${revision}</version>
+        <version>1.0-SNAPSHOT</version>
     </parent>
-    <packaging>jar</packaging>
 
-    <artifactId>autho-flex-core</artifactId>
+    <artifactId>autho-flex-cache</artifactId>
 
+    <properties>
+        <maven.compiler.source>8</maven.compiler.source>
+        <maven.compiler.target>8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
     <dependencies>
-        <!--零依赖-->
+        <dependency>
+            <groupId>com.fuliang</groupId>
+            <artifactId>autho-flex-core</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

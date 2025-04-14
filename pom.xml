@@ -11,6 +11,7 @@
     <modules>
         <module>autho-flex-core</module>
         <module>autho-flex-starter</module>
+        <module>autho-flex-cache</module>
     </modules>
 
     <properties>
@@ -279,7 +280,17 @@
                 <version>${caffeine.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.fuliang</groupId>
+                <artifactId>autho-flex-core</artifactId>
+                <version>${revision}</version>
+            </dependency>
 
+            <dependency>
+                <groupId>com.fuliang</groupId>
+                <artifactId>autho-flex-cache</artifactId>
+                <version>${revision}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 

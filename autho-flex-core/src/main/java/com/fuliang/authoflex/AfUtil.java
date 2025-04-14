@@ -11,4 +11,7 @@ public class AfUtil {
     public static void logout() {
         afLogic.logout();
     }
+    public static boolean isLogin() {
+        return afLogic.isLogin();
+    }
 }

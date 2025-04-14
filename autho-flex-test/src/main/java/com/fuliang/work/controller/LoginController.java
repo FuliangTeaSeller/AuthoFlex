@@ -24,4 +24,8 @@ public class LoginController {
         AfUtil.logout();
         return AjaxResult.success();
     }
+    @GetMapping("/islogin")
+    public AjaxResult isLogin() {
+        return AjaxResult.success(AfUtil.isLogin());
+    }
 }

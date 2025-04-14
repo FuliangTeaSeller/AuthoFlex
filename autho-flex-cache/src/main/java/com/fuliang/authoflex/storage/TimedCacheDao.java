@@ -1,9 +1,10 @@
 package com.fuliang.authoflex.storage;
 
 import cn.hutool.cache.impl.TimedCache;
+import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
-
+@Component
 public class TimedCacheDao implements AfDao {
     TimedCache<String, Object> cache;
 

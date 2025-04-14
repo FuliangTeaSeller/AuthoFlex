@@ -12,7 +12,7 @@ public class AfBeanInject {
         }
     }
     @Autowired(required = false)
-    public void setSaTokenDao(AfDao afDao) {
+    public void setAfDao(AfDao afDao) {
         AfManager.setAfDao(afDao);
     }
 }
