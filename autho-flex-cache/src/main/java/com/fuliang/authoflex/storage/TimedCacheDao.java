@@ -1,10 +1,12 @@
 package com.fuliang.authoflex.storage;
 
 import cn.hutool.cache.impl.TimedCache;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
 @Component
+@ConditionalOnProperty(prefix = "autho-flex",name = "dao-type",havingValue = "timed-cache")
 public class TimedCacheDao implements AfDao {
     TimedCache<String, Object> cache;
 
