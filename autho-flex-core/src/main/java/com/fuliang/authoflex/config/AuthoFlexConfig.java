@@ -4,6 +4,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.util.concurrent.TimeUnit;
+
 @Data
 public class AuthoFlexConfig implements Serializable {
     private static final long serialVersionUID = -6541180061782004705L;
@@ -12,4 +13,5 @@ public class AuthoFlexConfig implements Serializable {
     private String idPrefix = "id";
     private Long tokenTTLSeconds = TimeUnit.MINUTES.toSeconds(5);
     private String daoType = "default";
+    private Boolean enableInterceptor = false;
 }

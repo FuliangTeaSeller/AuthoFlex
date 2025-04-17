@@ -1,6 +1,7 @@
 package com.fuliang.authoflex;
 
 import com.fuliang.authoflex.config.AuthoFlexConfig;
+import com.fuliang.authoflex.context.AfContext;
 import com.fuliang.authoflex.storage.AfDao;
 import com.fuliang.authoflex.storage.AfDaoDefultImpl;
 
@@ -34,6 +35,14 @@ public class AfManager {
     }
     public static void setAuthoFlexConfig(AuthoFlexConfig authoFlexConfig) {
         AfManager.authoFlexConfig = authoFlexConfig;
+    }
+
+    private static volatile AfContext afContext;
+    public static AfContext getAfContext() {
+        return afContext;
+    }
+    public static void setAfContext(AfContext afContext) {
+        AfManager.afContext = afContext;
     }
 
 }

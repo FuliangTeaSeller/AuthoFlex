@@ -15,12 +15,12 @@
     <modules>
         <module>authoflex-spring-boot-autoconfig</module>
         <module>authoflex-spring-boot-starter</module>
+        <module>authoflex-servlet</module>
     </modules>
     <dependencies>
         <dependency>
             <groupId>com.fuliang</groupId>
             <artifactId>autho-flex-core</artifactId>
-            <version>${revision}</version>
         </dependency>
     </dependencies>
 </project>

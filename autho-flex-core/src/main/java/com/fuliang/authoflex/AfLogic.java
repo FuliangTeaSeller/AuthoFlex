@@ -3,13 +3,12 @@ package com.fuliang.authoflex;
 import com.fuliang.authoflex.config.AuthoFlexConfig;
 import com.fuliang.authoflex.exception.AfLoginException;
 import com.fuliang.authoflex.storage.AfDao;
-import com.fuliang.authoflex.util.SpringMVCUtil;
 import com.fuliang.authoflex.util.PrefixUtil;
-import lombok.extern.slf4j.Slf4j;
+//import lombok.extern.slf4j.Slf4j;
 
 import java.util.UUID;
 
-@Slf4j
+//@Slf4j
 public class AfLogic {
     private AuthoFlexConfig authoFlexConfig;
 
@@ -31,7 +30,7 @@ public class AfLogic {
     }
 
     public void login(String id) {
-        log.info(AfManager.getAuthoFlexConfig().getHelloMsg());
+//        log.info(AfManager.getAuthoFlexConfig().getHelloMsg());
         String token = tryGenerateToken(id);
 
         tryInject(token);
@@ -58,7 +57,7 @@ public class AfLogic {
     }
 
     private void tryInject(String token) {
-        SpringMVCUtil.getResponse().setHeader("token", token);
+        AfManager.getAfContext().getResponse().setHeader("token", token);
     }
 
     public void logout() {
@@ -71,7 +70,7 @@ public class AfLogic {
     }
 
     private String getTokenValueByContext() {
-        return SpringMVCUtil.getRequest().getHeader(getAuthoFlexConfigOrGlobal().getTokenPrefix());
+        return AfManager.getAfContext().getRequest().getHeader(getAuthoFlexConfigOrGlobal().getTokenPrefix());
     }
 
     private void saveToken(String id, String token) {
@@ -110,7 +109,7 @@ public class AfLogic {
 
     public String tryGetLoginId() {
         String tokenPrefix = AfManager.getAuthoFlexConfig().getTokenPrefix();
-        String header = SpringMVCUtil.getRequest().getHeader(tokenPrefix);
+        String header = AfManager.getAfContext().getRequest().getHeader(tokenPrefix);
         if (header == null) {
             return null;
         }

@@ -7,32 +7,23 @@
         <groupId>com.fuliang</groupId>
         <artifactId>autho-flex-starter</artifactId>
         <version>${revision}</version>
+<!--        <relativePath>../pom.xml</relativePath>-->
     </parent>
     <packaging>jar</packaging>
 
-    <artifactId>authoflex-spring-boot-autoconfig</artifactId>
+    <artifactId>authoflex-servlet</artifactId>
 
     <dependencies>
-        <!-- spring-boot-starter (optional) -->
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-webmvc</artifactId>
-            <version>5.3.7</version>
-            <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <optional>true</optional>
+            <groupId>com.fuliang</groupId>
+            <artifactId>autho-flex-core</artifactId>
         </dependency>
 
-
-
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <optional>true</optional>
+        </dependency>
     </dependencies>
 
 </project>

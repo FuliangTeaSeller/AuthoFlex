@@ -1,15 +1,12 @@
 package com.fuliang.authoflex.storage;
 
-import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
-import org.springframework.stereotype.Component;
 
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Component
-@ConditionalOnProperty(prefix = "autho-flex", name = "dao-type", havingValue = "default", matchIfMissing = true)
+//@Component
+//@ConditionalOnProperty(prefix = "autho-flex", name = "dao-type", havingValue = "default", matchIfMissing = true)
 public class AfDaoDefultImpl implements AfDao {
     public Map<String, Object> map;
 

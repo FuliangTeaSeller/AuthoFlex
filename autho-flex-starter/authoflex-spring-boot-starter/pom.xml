@@ -17,18 +17,19 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-            <version>${springboot.version}</version>
         </dependency>
         <dependency>
             <groupId>com.fuliang</groupId>
             <artifactId>autho-flex-core</artifactId>
-            <version>${revision}</version>
         </dependency>
 
         <dependency>
             <groupId>com.fuliang</groupId>
             <artifactId>authoflex-spring-boot-autoconfig</artifactId>
-            <version>${revision}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fuliang</groupId>
+            <artifactId>authoflex-servlet</artifactId>
         </dependency>
     </dependencies>
 
