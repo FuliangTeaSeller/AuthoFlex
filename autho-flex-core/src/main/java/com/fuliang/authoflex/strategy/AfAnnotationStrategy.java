@@ -9,6 +9,9 @@ import java.lang.reflect.Method;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * 策略类，单例，里面是一些预先写好的方法。你可以通过替换这些方法实现你需要的功能
+ */
 public class AfAnnotationStrategy {
     public static final AfAnnotationStrategy instance=new AfAnnotationStrategy();
 

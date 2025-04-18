@@ -63,7 +63,7 @@ public class AfLogic {
     public void logout() {
         AfDao dao = AfManager.getAfDao();
         String token = getTokenValueByContext();
-        String id = (String) dao.get(PrefixUtil.addTokenPrefix(token));
+        String id = dao.get(PrefixUtil.addTokenPrefix(token));
 
         dao.remove(PrefixUtil.addIdPrefix(id));
         dao.remove(PrefixUtil.addTokenPrefix(token));

@@ -3,6 +3,9 @@ package com.fuliang.authoflex.util;
 import com.fuliang.authoflex.AfManager;
 import com.fuliang.authoflex.config.AuthoFlexConfig;
 
+/**
+ * 工具类，处理持久层存储前缀
+ */
 public class PrefixUtil {
 
     public static String ID;

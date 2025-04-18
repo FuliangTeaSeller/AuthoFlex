@@ -1,9 +1,7 @@
 package com.fuliang.authoflex.event;
 
-import lombok.extern.slf4j.Slf4j;
-
 //@Slf4j
-public class AfListener4Log implements AfListener {
+public class AfListenerForLog implements AfListener {
     @Override
     public EventType getTopic() {
         return EventType.ON_LOGIN;

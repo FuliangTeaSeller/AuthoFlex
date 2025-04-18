@@ -8,7 +8,7 @@ import java.util.Map;
 public class AfEventCenter {
     private static Map<EventType, List<AfListener>> listeners = new HashMap<>();
     static {
-        addListener(new AfListener4Log());
+        addListener(new AfListenerForLog());
     }
     public static void addListener(AfListener listener) {
         EventType topic = listener.getTopic();

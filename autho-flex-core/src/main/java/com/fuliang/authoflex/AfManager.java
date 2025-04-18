@@ -5,6 +5,9 @@ import com.fuliang.authoflex.context.AfContext;
 import com.fuliang.authoflex.storage.AfDao;
 import com.fuliang.authoflex.storage.AfDaoDefultImpl;
 
+/**
+ * 框架的所有组件都会自动挂载到AfManager，你可以通过AfManager获取这些组件
+ */
 public class AfManager {
 
     private static volatile AfDao afDao;
