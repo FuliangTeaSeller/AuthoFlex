@@ -2,6 +2,7 @@ package com.fuliang.authoflex.interceptor;
 
 import com.fuliang.authoflex.AfManager;
 import com.fuliang.authoflex.config.AuthoFlexConfig;
+import com.fuliang.authoflex.strategy.AfAnnotationStrategy;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
@@ -14,24 +15,22 @@ import java.lang.reflect.Method;
 
 @Slf4j
 public class AfInterceptor implements HandlerInterceptor {
-    private AuthoFlexConfig authoFlexConfig;
-
-    public AfInterceptor() {
-        this.authoFlexConfig = AfManager.getAuthoFlexConfig();
-    }
+    public boolean isAnnotation = true;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         //只要配置不开启拦截器，即使存在注解，添加了此拦截器，功能也不生效
-        if (!authoFlexConfig.getEnableInterceptor()) return true;
+        if (!isAnnotation) return true;
 
         try {
             if (handler instanceof HandlerMethod) {
                 HandlerMethod handlerMethod = (HandlerMethod) handler;
                 Method method = handlerMethod.getMethod();
+                AfAnnotationStrategy.instance.processMethod(method);
             }
-        }catch (Exception e){
-            log.error(e.getMessage());
+        } catch (Exception e) {
+            log.info("请求:{} 拦截器注解鉴权未通过: {}", request.getRequestURI(), e.getClass().getName());
+            return false;
         }
         return true;
     }

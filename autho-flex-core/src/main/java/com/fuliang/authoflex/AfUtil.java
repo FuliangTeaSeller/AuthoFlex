@@ -1,4 +1,7 @@
 package com.fuliang.authoflex;
+
+import com.fuliang.authoflex.excetion.NotLoginException;
+
 public class AfUtil {
     public static AfLogic afLogic = new AfLogic();
     /**
@@ -13,5 +16,10 @@ public class AfUtil {
     }
     public static boolean isLogin() {
         return afLogic.isLogin();
+    }
+    public static void checkLogin() {
+        if (!afLogic.isLogin()) {
+            throw new NotLoginException();
+        }
     }
 }
