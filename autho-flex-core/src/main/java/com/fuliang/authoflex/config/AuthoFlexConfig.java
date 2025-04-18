@@ -9,9 +9,11 @@ import java.util.concurrent.TimeUnit;
 public class AuthoFlexConfig implements Serializable {
     private static final long serialVersionUID = -6541180061782004705L;
     private String helloMsg = "hello";
+    private String name = "authoflex";
     private String tokenPrefix = "token";
     private String idPrefix = "id";
     private Long tokenTTLSeconds = TimeUnit.MINUTES.toSeconds(5);
     private String daoType = "default";
     private Boolean enableInterceptor = false;
+    private Boolean tokenOverride = true;
 }

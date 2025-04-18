@@ -7,18 +7,20 @@ public class PrefixUtil {
 
     public static String ID;
     public static String TOKEN;
+    public static String COMMON_PREFIX;
 
     static {
         AuthoFlexConfig config = AfManager.getAuthoFlexConfig();
         ID = config.getIdPrefix() + ":";
         TOKEN = config.getTokenPrefix() + ":";
+        COMMON_PREFIX = config.getName() + ":";
     }
 
     public static String addIdPrefix(String key) {
-        return ID + key;
+        return COMMON_PREFIX + ID + key;
     }
 
     public static String addTokenPrefix(String key) {
-        return TOKEN + key;
+        return COMMON_PREFIX + TOKEN + key;
     }
 }

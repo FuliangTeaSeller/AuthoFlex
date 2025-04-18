@@ -10,6 +10,7 @@
     <module>autho-flex-core</module>
     <module>autho-flex-starter</module>
     <module>autho-flex-cache</module>
+    <module>autho-flex-redis</module>
   </modules>
   <properties>
     <freemarker.version>2.3.34</freemarker.version>

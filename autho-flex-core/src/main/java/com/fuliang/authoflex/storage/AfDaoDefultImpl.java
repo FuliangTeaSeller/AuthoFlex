@@ -8,19 +8,24 @@ import java.util.concurrent.ConcurrentHashMap;
 //@Component
 //@ConditionalOnProperty(prefix = "autho-flex", name = "dao-type", havingValue = "default", matchIfMissing = true)
 public class AfDaoDefultImpl implements AfDao {
-    public Map<String, Object> map;
+    public Map<String, String> map;
 
     public AfDaoDefultImpl() {
         this.map = new ConcurrentHashMap<>();
     }
 
     @Override
-    public Object get(String key) {
+    public String get(String key) {
         return map.get(key);
     }
 
     @Override
-    public Object put(String key, Object value) {
+    public String put(String key, String value) {
+        return map.put(key, value);
+    }
+
+    @Override
+    public String put(String key, String value, long timeout) {
         return map.put(key, value);
     }
 

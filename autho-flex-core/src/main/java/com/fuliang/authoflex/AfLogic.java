@@ -10,22 +10,22 @@ import java.util.UUID;
 
 //@Slf4j
 public class AfLogic {
-    private AuthoFlexConfig authoFlexConfig;
+    private AuthoFlexConfig config;
 
-    public AuthoFlexConfig getAuthoFlexConfig() {
-        return authoFlexConfig;
+    public AuthoFlexConfig getConfig() {
+        return config;
     }
 
     public AuthoFlexConfig getAuthoFlexConfigOrGlobal() {
-        AuthoFlexConfig localConfig = getAuthoFlexConfig();
+        AuthoFlexConfig localConfig = getConfig();
         if (localConfig != null) {
             return localConfig;
         }
         return AfManager.getAuthoFlexConfig();
     }
 
-    public AfLogic setAuthoFlexConfig(AuthoFlexConfig authoFlexConfig) {
-        this.authoFlexConfig = authoFlexConfig;
+    public AfLogic setConfig(AuthoFlexConfig config) {
+        this.config = config;
         return this;
     }
 
@@ -38,7 +38,7 @@ public class AfLogic {
 
     private String tryGenerateToken(String id) {
         String token = getToken(id);
-        if (token != null) {
+        if (token != null && !config.getTokenOverride()) {
             return token;
         }
 
@@ -74,7 +74,7 @@ public class AfLogic {
     }
 
     private void saveToken(String id, String token) {
-        AfManager.getAfDao().put(PrefixUtil.addIdPrefix(id), token);
+        AfManager.getAfDao().put(PrefixUtil.addIdPrefix(id), token, config.getTokenTTLSeconds());
     }
 
     private String getToken(String id) {

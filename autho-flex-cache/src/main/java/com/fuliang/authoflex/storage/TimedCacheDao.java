@@ -5,23 +5,29 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
 
 import java.util.concurrent.TimeUnit;
-@Component
+
 @ConditionalOnProperty(prefix = "autho-flex",name = "dao-type",havingValue = "timed-cache")
 public class TimedCacheDao implements AfDao {
-    TimedCache<String, Object> cache;
+    TimedCache<String, String> cache;
 
     public TimedCacheDao() {
         this.cache = new TimedCache<>(TimeUnit.MINUTES.toMillis(5));
     }
 
     @Override
-    public Object get(String key) {
+    public String get(String key) {
         return cache.get(key);
     }
 
     @Override
-    public Object put(String key, Object value) {
+    public String put(String key, String value) {
         cache.put(key, value);
+        return value;
+    }
+
+    @Override
+    public String put(String key, String value, long timeout) {
+        cache.put(key, value, timeout);
         return value;
     }
 
