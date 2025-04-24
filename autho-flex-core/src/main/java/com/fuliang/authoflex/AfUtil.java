@@ -1,14 +1,16 @@
 package com.fuliang.authoflex;
 
-import com.fuliang.authoflex.excetion.NotLoginException;
+import com.fuliang.authoflex.exception.NotLoginException;
 
 /**
  * 对认证授权操作的封装。大部分情况下你只需要使用这个类
  */
 public class AfUtil {
     public static AfLogic afLogic = new AfLogic();
+
     /**
      * 调用者自行验证账号密码匹配后，调用此方法通知框架
+     *
      * @param id 登录用户的id，推荐与数据库id一致
      */
     public static void login(String id) {
@@ -24,19 +26,30 @@ public class AfUtil {
 
     /**
      * 验证是否登录
+     *
      * @return boolean
      */
     public static boolean isLogin() {
         return afLogic.isLogin();
     }
+    public static boolean isLogin(String id) {
+        return afLogic.isLogin(id);
+    }
 
     /**
      * 验证是否登录,未登录抛异常
+     *
      * @throws NotLoginException
      */
     public static void checkLogin() {
-        if (!afLogic.isLogin()) {
-            throw new NotLoginException();
-        }
+        afLogic.checkLogin();
+    }
+
+    public static void checkLogin(String id) {
+        afLogic.checkLogin(id);
+    }
+
+    public static String getLoginId() {
+        return afLogic.tryGetLoginId();
     }
 }

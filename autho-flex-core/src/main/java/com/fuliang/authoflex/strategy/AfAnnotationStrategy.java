@@ -1,8 +1,12 @@
 package com.fuliang.authoflex.strategy;
 
 import com.fuliang.authoflex.annotation.AfCheckLogin;
+import com.fuliang.authoflex.annotation.AfCheckPermission;
+import com.fuliang.authoflex.annotation.AfCheckRole;
 import com.fuliang.authoflex.annotation.handler.AfAnnotationProcessHandler;
 import com.fuliang.authoflex.annotation.handler.AfCheckLoginHandler;
+import com.fuliang.authoflex.annotation.handler.AfCheckPermissionHandler;
+import com.fuliang.authoflex.annotation.handler.AfCheckRoleHandler;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Method;
@@ -23,6 +27,8 @@ public class AfAnnotationStrategy {
 
     public void init(){
         annotationHandlerMap.put(AfCheckLogin.class, new AfCheckLoginHandler());
+        annotationHandlerMap.put(AfCheckRole.class, new AfCheckRoleHandler());
+        annotationHandlerMap.put(AfCheckPermission.class, new AfCheckPermissionHandler());
     }
 
     /**
@@ -36,14 +42,16 @@ public class AfAnnotationStrategy {
             AfAnnotationProcessHandler handler = entry.getValue();
 
             //类上存在对应注解，执行handler
-            if(declaringClass.getAnnotation(annotationClass)!=null){
-                handler.process();
+            Annotation classAnnotation = declaringClass.getAnnotation(annotationClass);
+            if(classAnnotation!=null){
+                handler.process(classAnnotation);
                 continue;
             }
 
             //方法上存在对应注解，执行handler
-            if(method.getAnnotation(annotationClass)!=null){
-                handler.process();
+            Annotation methodAnnotation = method.getAnnotation(annotationClass);
+            if(methodAnnotation!=null){
+                handler.process(methodAnnotation);
             }
         }
     }

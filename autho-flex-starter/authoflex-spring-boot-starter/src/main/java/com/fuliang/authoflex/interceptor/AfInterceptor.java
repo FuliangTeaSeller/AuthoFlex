@@ -29,7 +29,7 @@ public class AfInterceptor implements HandlerInterceptor {
                 AfAnnotationStrategy.instance.processMethod(method);
             }
         } catch (Exception e) {
-            log.info("请求:{} 拦截器注解鉴权未通过: {}", request.getRequestURI(), e.getClass().getName());
+            log.warn("请求:{} 拦截器注解鉴权未通过: {}", request.getRequestURI(), e.getClass().getName() + " " + e.getMessage());
             return false;
         }
         return true;

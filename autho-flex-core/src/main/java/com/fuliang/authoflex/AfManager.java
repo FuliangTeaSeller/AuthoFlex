@@ -2,6 +2,7 @@ package com.fuliang.authoflex;
 
 import com.fuliang.authoflex.config.AuthoFlexConfig;
 import com.fuliang.authoflex.context.AfContext;
+import com.fuliang.authoflex.permission.AfPermissionHanlder;
 import com.fuliang.authoflex.storage.AfDao;
 import com.fuliang.authoflex.storage.AfDaoDefultImpl;
 
@@ -46,6 +47,14 @@ public class AfManager {
     }
     public static void setAfContext(AfContext afContext) {
         AfManager.afContext = afContext;
+    }
+
+    private static volatile AfPermissionHanlder afPermissionHanlder;
+    public static AfPermissionHanlder getAfPermissionHanlder() {
+        return afPermissionHanlder;
+    }
+    public static void setAfPermissionHanlder(AfPermissionHanlder afPermissionHanlder) {
+        AfManager.afPermissionHanlder = afPermissionHanlder;
     }
 
 }

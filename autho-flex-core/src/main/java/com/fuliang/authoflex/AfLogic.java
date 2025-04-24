@@ -1,7 +1,8 @@
 package com.fuliang.authoflex;
 
 import com.fuliang.authoflex.config.AuthoFlexConfig;
-import com.fuliang.authoflex.exception.AfLoginException;
+import com.fuliang.authoflex.exception.AfException;
+import com.fuliang.authoflex.exception.NotLoginException;
 import com.fuliang.authoflex.storage.AfDao;
 import com.fuliang.authoflex.util.PrefixUtil;
 //import lombok.extern.slf4j.Slf4j;
@@ -37,8 +38,8 @@ public class AfLogic {
     }
 
     private String tryGenerateToken(String id) {
-        String token = getToken(id);
-        if (token != null && !config.getTokenOverride()) {
+        String token = getTokenById(id);
+        if (token != null && !getAuthoFlexConfigOrGlobal().getTokenOverride()) {
             return token;
         }
 
@@ -53,7 +54,7 @@ public class AfLogic {
     }
 
     private void saveId(String id, String token) {
-        AfManager.getAfDao().put(PrefixUtil.addTokenPrefix(token), id);
+        AfManager.getAfDao().put(PrefixUtil.addTokenPrefix(token), id, getAuthoFlexConfigOrGlobal().getTokenTTLSeconds());
     }
 
     private void tryInject(String token) {
@@ -74,11 +75,11 @@ public class AfLogic {
     }
 
     private void saveToken(String id, String token) {
-        AfManager.getAfDao().put(PrefixUtil.addIdPrefix(id), token, config.getTokenTTLSeconds());
+        AfManager.getAfDao().put(PrefixUtil.addIdPrefix(id), token, getAuthoFlexConfigOrGlobal().getTokenTTLSeconds());
     }
 
-    private String getToken(String id) {
-        return (String) AfManager.getAfDao().get(PrefixUtil.addIdPrefix(id));
+    private String getTokenById(String id) {
+        return AfManager.getAfDao().get(PrefixUtil.addIdPrefix(id));
     }
 
     private String generateToken() {
@@ -99,20 +100,33 @@ public class AfLogic {
 
     public void checkLoginById(String id) {
         if (!isLoginById(id)) {
-            throw new AfLoginException("未登录");
+            throw new AfException("未登录");
         }
     }
 
     public boolean isLogin() {
-        return tryGetLoginId() != null;
+        return isLogin(tryGetLoginId());
+    }
+
+    public boolean isLogin(String id) {
+        return getTokenById(id) != null;
     }
 
     public String tryGetLoginId() {
         String tokenPrefix = AfManager.getAuthoFlexConfig().getTokenPrefix();
-        String header = AfManager.getAfContext().getRequest().getHeader(tokenPrefix);
-        if (header == null) {
+        String token = AfManager.getAfContext().getRequest().getHeader(tokenPrefix);
+        if (token == null) {
             return null;
         }
-        return (String) AfManager.getAfDao().get(PrefixUtil.addTokenPrefix(header));
+        return AfManager.getAfDao().get(PrefixUtil.addTokenPrefix(token));
+    }
+
+    public void checkLogin() {
+        checkLogin(tryGetLoginId());
+    }
+    public void checkLogin(String id) {
+        if(!isLogin(id)) {
+            throw new NotLoginException();
+        }
     }
 }

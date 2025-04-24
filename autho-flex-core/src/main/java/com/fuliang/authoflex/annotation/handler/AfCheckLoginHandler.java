@@ -4,16 +4,11 @@ import com.fuliang.authoflex.AfUtil;
 import com.fuliang.authoflex.annotation.AfCheckLogin;
 
 import java.lang.annotation.Annotation;
-import java.util.Collections;
 
-public class AfCheckLoginHandler implements AfAnnotationProcessHandler{
-    @Override
-    public Class<? extends Annotation> getAnnotation() {
-        return AfCheckLogin.class;
-    }
+public class AfCheckLoginHandler implements AfAnnotationProcessHandler<AfCheckLogin>{
 
     @Override
-    public void process() {
+    public void process(AfCheckLogin annotation) {
         AfUtil.checkLogin();
     }
 }
